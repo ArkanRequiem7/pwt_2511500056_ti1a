@@ -1,7 +1,10 @@
 <?php
-    session_start();
-    require_once("config/koneksi.php");
-    if(isset($_SESSION['Username'])){
+session_start();
+require_once("config/koneksi.php");
+
+$role = $_SESSION['role'] ?? "";
+
+if(isset($_SESSION['Username'])){
 ?>
 <!DOCTYPE html>
 <!--
@@ -101,72 +104,106 @@ scratch. This page gets rid of all links and provides the needed markup only.
       </div>
 
       <!-- Sidebar Menu -->
-      <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-          <li class="nav-item menu-open">
-            <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Master
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="#" class="nav-link active">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Mata Pelajaran</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Guru</p>
-                </a>
-              </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Siswa</p>
-                </a>
-                </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                    <p>Kelas</p>
-                </a>
-                </li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link active">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
-                <p>
-                    Transaksi
-                    <i class="right fas fa-angle-left"></i>
-                </p>
-            </a>
-            <ul class="nav nav-treeview">
-                <li class="nav-item">
-                    <a href="#" class="nav-link active">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Jadwal</p>
-                    </a>
-                </li>
-            </ul>
-        </li>
-          <li class="nav-item">
-            <a href="logout.php" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Logout
-              </p>
-            </a>
-          </li>
-        </ul>
-      </nav>
+<nav class="mt-2">
+<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
+
+<?php if($_SESSION['role'] == "admin"): ?>
+
+<li class="nav-item menu-open">
+  <a href="#" class="nav-link active">
+    <i class="nav-icon fas fa-database"></i>
+    <p>Master <i class="right fas fa-angle-left"></i></p>
+  </a>
+  <ul class="nav nav-treeview">
+    <li class="nav-item">
+      <a href="mapel.php" class="nav-link">
+        <i class="far fa-circle nav-icon"></i>
+        <p>Mata Pelajaran</p>
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a href="guru.php" class="nav-link">
+        <i class="far fa-circle nav-icon"></i>
+        <p>Guru</p>
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a href="siswa.php" class="nav-link">
+        <i class="far fa-circle nav-icon"></i>
+        <p>Siswa</p>
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a href="kelas.php" class="nav-link">
+        <i class="far fa-circle nav-icon"></i>
+        <p>Kelas</p>
+      </a>
+    </li>
+  </ul>
+</li>
+
+<li class="nav-item">
+  <a href="jadwal.php" class="nav-link">
+    <i class="nav-icon fas fa-calendar"></i>
+    <p>Jadwal</p>
+  </a>
+</li>
+
+<?php elseif($_SESSION['role'] == "guru"): ?>
+
+<li class="nav-item">
+  <a href="profil_guru.php" class="nav-link">
+    <i class="nav-icon fas fa-user"></i>
+    <p>Profil</p>
+  </a>
+</li>
+
+<li class="nav-item">
+  <a href="kelas_guru.php" class="nav-link">
+    <i class="nav-icon fas fa-users"></i>
+    <p>Kelas</p>
+  </a>
+</li>
+
+<li class="nav-item">
+  <a href="jadwal_guru.php" class="nav-link">
+    <i class="nav-icon fas fa-calendar-alt"></i>
+    <p>Jadwal</p>
+  </a>
+</li>
+
+<?php elseif($_SESSION['role'] == "siswa"): ?>
+
+<li class="nav-item">
+  <a href="profil_siswa.php" class="nav-link">
+    <i class="nav-icon fas fa-user-graduate"></i>
+    <p>Profil</p>
+  </a>
+</li>
+
+<li class="nav-item">
+  <a href="jadwal_siswa.php" class="nav-link">
+    <i class="nav-icon fas fa-calendar-check"></i>
+    <p>Jadwal Pelajaran</p>
+  </a>
+</li>
+
+<?php endif; ?>
+
+<li class="nav-header">AKSI</li>
+
+<li class="nav-item">
+  <a href="logout.php" class="nav-link">
+    <i class="nav-icon fas fa-sign-out-alt"></i>
+    <p>Logout</p>
+  </a>
+</li>
+
+</ul>
+</nav>
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
