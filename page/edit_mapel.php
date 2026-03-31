@@ -9,7 +9,6 @@
 </div>
 <?php
     $kd = $_GET['kd'];
-    // Perbaikan 1: Mengubah nama variabel $query menjadi $edit agar sinkron dengan form di bawah
     $edit = mysqli_fetch_array(mysqli_query($koneksi, "SELECT * FROM mapel where kd_mapel = '$kd' "));
 
     if (isset($_POST['tambah'])) {
@@ -19,7 +18,6 @@
 
         $update = mysqli_query($koneksi, "UPDATE mapel SET nm_mapel = '$nm_mapel', kkm = '$kkm' where kd_mapel = '$kd_mapel' ");
         
-        // Perbaikan 2: Mengubah $insert menjadi $update agar pengecekan kondisi benar
         if ($update) { 
             echo '
             <div class="alert alert-info-dismissible">
