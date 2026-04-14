@@ -1,6 +1,8 @@
 <?php
   session_start();
   require_once("config/koneksi.php");
+  $current_page = isset($_GET['page']) ? $_GET['page'] : '';
+  
   if(isset($_SESSION['role'])) {
     $role = $_SESSION['role'];
 ?>
@@ -102,103 +104,82 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
       <!-- Sidebar Menu -->
       <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        
+        <li class="nav-item <?php echo in_array($current_page, ['guru', 'siswa', 'mapel', 'kelas', 'tambah_guru', 'edit_guru', 'tambah_siswa', 'edit_siswa', 'tambah_kelas', 'edit_kelas']) ? 'menu-open' : ''; ?>">
+          <a href="#" class="nav-link <?php echo in_array($current_page, ['guru', 'siswa', 'mapel', 'kelas']) ? 'active' : ''; ?>">
+            <i class="nav-icon fas fa-chalkboard-teacher"></i>
+            <p>
+              Master
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
 
-          <li class="nav-item menu-open">
-            <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-chalkboard-teacher"></i>
-              <p>
-                Master
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
+          <ul class="nav nav-treeview">
+            <?php if ($role == 'admin' || $role == 'guru') : ?>
+            <li class="nav-item">
+              <a href="index.php?page=guru" class="nav-link <?php echo ($current_page == 'guru' || $current_page == 'tambah_guru' || $current_page == 'edit_guru') ? 'active' : ''; ?>">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Guru</p>
+              </a>
+            </li>
+            <?php endif; ?>
+
+            <?php if ($role == 'admin' || $role == 'siswa') : ?>
+            <li class="nav-item">
+              <a href="index.php?page=siswa" class="nav-link <?php echo ($current_page == 'siswa' || $current_page == 'tambah_siswa' || $current_page == 'edit_siswa') ? 'active' : ''; ?>">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Siswa</p>
+              </a>
+            </li>
+            <?php endif; ?>
 
             <?php if ($role == 'admin') : ?>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Guru</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Siswa</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="index.php?page=mapel" class="nav-link active">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Mata Pelajaran</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Kelas</p>
-                </a>
-              </li>
-            </ul>
-            <?php endif; ?>   
+            <li class="nav-item">
+              <a href="index.php?page=mapel" class="nav-link <?php echo ($current_page == 'mapel') ? 'active' : ''; ?>">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Mata Pelajaran</p>
+              </a>
+            </li>
+            <?php endif; ?>
 
-            <?php if ($role == 'guru') : ?>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Guru</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Kelas</p>
-                </a>
-              </li>
-            </ul>
-            <?php endif; ?>            
+            <?php if ($role == 'admin' || $role == 'guru') : ?>
+            <li class="nav-item">
+              <a href="index.php?page=kelas" class="nav-link <?php echo ($current_page == 'kelas' || $current_page == 'tambah_kelas' || $current_page == 'edit_kelas') ? 'active' : ''; ?>">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Kelas</p>
+              </a>
+            </li>
+            <?php endif; ?>
+          </ul>
+        </li>
 
-            <?php if ($role == 'siswa') : ?>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Siswa</p>
-                </a>
-              </li>
-            </ul>
-            <?php endif; ?> 
+        <li class="nav-item <?php echo ($current_page == 'jadwal') ? 'menu-open' : ''; ?>">
+          <a href="#" class="nav-link <?php echo ($current_page == 'jadwal') ? 'active' : ''; ?>">
+            <i class="nav-icon fas fa-tachometer-alt"></i>
+            <p>
+              Transaksi
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="index.php?page=jadwal" class="nav-link <?php echo ($current_page == 'jadwal') ? 'active' : ''; ?>">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Jadwal</p>
+              </a>
+            </li>
+          </ul>
+        </li>
 
-          </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link active">
-                  <i class="nav-icon fas fa-tachometer-alt"></i>
-                  <p>Transaksi
-                    <i class="right fas fa-angle-left"></i>
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Jadwal</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a href="logout.php" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Logout
-              </p>
-            </a>
-          </li>
-        </ul>
-      </nav>
+        <li class="nav-item">
+          <a href="logout.php" class="nav-link">
+            <i class="nav-icon fas fa-sign-out-alt"></i>
+            <p>Logout</p>
+          </a>
+        </li>
+      </ul>
+    </nav>
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->

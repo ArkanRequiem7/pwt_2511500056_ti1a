@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Waktu pembuatan: 31 Mar 2026 pada 05.30
+-- Waktu pembuatan: 14 Apr 2026 pada 05.26
 -- Versi server: 8.0.44
 -- Versi PHP: 7.4.19
 
@@ -38,7 +38,9 @@ CREATE TABLE `mapel` (
 --
 
 INSERT INTO `mapel` (`kd_mapel`, `nm_mapel`, `kkm`) VALUES
-('M-001', 'Buku Hitam Prabowo', 76);
+('M-001', 'Buku Hitam Prabowo', 76),
+('M-002', 'Agama', 75),
+('M-003', 'Buku Hitam Prabowo Bab 2', 90);
 
 --
 -- Indexes for dumped tables
