@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Waktu pembuatan: 14 Apr 2026 pada 05.37
+-- Waktu pembuatan: 21 Apr 2026 pada 05.19
 -- Versi server: 8.0.44
 -- Versi PHP: 7.4.19
 
@@ -61,7 +61,8 @@ CREATE TABLE `guru` (
 --
 
 INSERT INTO `guru` (`Kd_guru`, `Nm_guru`, `Jenkel`, `Pend_terakhir`, `Hp`, `Alamat`) VALUES
-('Ren99', 'Renn ZO', 'Perempuan', 'Strata 2', '3131131333131', 'Mentok');
+('Ren99', 'Renn ZO', 'Perempuan', 'Strata 2', '3131131333131', 'Mentok'),
+('Renn1', 'Renn ZM', 'Laki-laki', 'Strata 2', '999999999999', 'Mentok');
 
 -- --------------------------------------------------------
 
@@ -147,8 +148,9 @@ INSERT INTO `users` (`id_user`, `Username`, `Password`, `role`, `session_id`) VA
 (1, 'Arkan Ramadhan', 'Arkan', 'admin', NULL),
 (2, 'Renn', 'Renn1', 'guru', NULL),
 (3, 'Malik', 'Malik1', 'siswa', NULL),
-(4, 'Ren99', '1234', 'guru', NULL),
-(5, '2511500056', '1234', 'siswa', NULL);
+(4, 'Ren99', 'Renn12', 'guru', NULL),
+(5, '2511500056', 'arkan', 'siswa', NULL),
+(6, 'Renn1', '1234', 'guru', NULL);
 
 --
 -- Indexes for dumped tables
@@ -210,7 +212,7 @@ ALTER TABLE `kelas`
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_user` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
