@@ -10,7 +10,7 @@
     $dataUser = mysqli_fetch_array($cekUser);
     if ($dataUser['Password'] == '1234' && $current_page != 'ganti_password' && $current_page != 'logout') {
         echo "<script>
-                alert('Anda masih menggunakan password default. Silakan ganti password Anda terlebih dahulu yaaa~ ');
+                alert('Anda masih menggunakan password default tuh. Silakan ganti password Anda terlebih dahulu yaaa~ ');
                 window.location.href='index.php?page=ganti_password';
               </script>";
         exit;
