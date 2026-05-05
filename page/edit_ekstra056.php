@@ -50,8 +50,8 @@ if(isset($_POST['update'])){
             <div class="form-group">
                 <label>Tahun Ajaran</label>
                 <select name="tahun" class="form-control">
-                    <option value="2025" <?= ($data['thn_ajaran056'] == '2025') ? 'selected' : ''; ?>>2025</option>
-                    <option value="2026" <?= ($data['thn_ajaran056'] == '2026') ? 'selected' : ''; ?>>2026</option>
+                    <option value="2024/2025" <?= ($data['thn_ajaran056'] == '2024/2025') ? 'selected' : ''; ?>>2024/2025</option>
+                    <option value="2025/2026" <?= ($data['thn_ajaran056'] == '2025/2026') ? 'selected' : ''; ?>>2025/2026</option>
                 </select>
             </div>
         </div>

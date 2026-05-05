@@ -36,8 +36,8 @@ if(isset($_POST['simpan'])){
     <div class="form-group">
         <label>Tahun Ajaran</label>
         <select name="tahun" class="form-control">
-            <option value="2025">2025</option>
-            <option value="2026">2026</option>
+            <option value="2024/2025">2024/2025</option>
+            <option value="2025/2026">2025/2026</option>
         </select>
     </div>
     <button type="submit" name="simpan" class="btn btn-success">Simpan Data</button>
