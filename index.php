@@ -36,16 +36,13 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="index3.html" class="nav-link">Home</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contact</a>
+        <a href="index.php" class="nav-link">Home</a>
       </li>
     </ul>
   </nav>
 
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <a href="index3.html" class="brand-link">
+    <a href="index.php" class="brand-link">
       <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">AdminLTE 3</span>
     </a>
@@ -63,16 +60,16 @@
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           
-          <li class="nav-item <?php echo in_array($current_page, ['guru', 'siswa', 'mapel', 'kelas', 'ekstraNimAnda', 'tambah_guru', 'edit_guru', 'tambah_siswa', 'edit_siswa', 'tambah_kelas', 'edit_kelas']) ? 'menu-open' : ''; ?>">
+          <li class="nav-item <?php echo in_array($current_page, ['guru', 'siswa', 'mapel', 'kelas', 'ekstra056', 'tambah_guru', 'edit_guru', 'tambah_siswa', 'edit_siswa', 'tambah_kelas', 'edit_kelas', 'tambah_ekstra056', 'edit_ekstra056']) ? 'menu-open' : ''; ?>">
             <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-chalkboard-teacher"></i>
+              <i class="nav-icon fas fa-database"></i>
               <p> Master <i class="right fas fa-angle-left"></i> </p>
             </a>
             <ul class="nav nav-treeview">
               <?php if ($role == 'admin' || $role == 'guru') : ?>
               <li class="nav-item">
                 <a href="index.php?page=guru" class="nav-link <?php echo ($current_page == 'guru' || $current_page == 'tambah_guru' || $current_page == 'edit_guru') ? 'active' : ''; ?>">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fas fa-user-tie nav-icon"></i>
                   <p>Guru</p>
                 </a>
               </li>
@@ -81,7 +78,7 @@
               <?php if ($role == 'admin' || $role == 'siswa') : ?>
               <li class="nav-item">
                 <a href="index.php?page=siswa" class="nav-link <?php echo ($current_page == 'siswa' || $current_page == 'tambah_siswa' || $current_page == 'edit_siswa') ? 'active' : ''; ?>">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fas fa-user-graduate nav-icon"></i>
                   <p>Siswa</p>
                 </a>
               </li>
@@ -90,13 +87,13 @@
               <?php if ($role == 'admin') : ?>
               <li class="nav-item">
                 <a href="index.php?page=mapel" class="nav-link <?php echo ($current_page == 'mapel') ? 'active' : ''; ?>">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fas fa-book nav-icon"></i>
                   <p>Mata Pelajaran</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="index.php?page=ekstraNimAnda" class="nav-link <?php echo ($current_page == 'ekstraNimAnda') ? 'active' : ''; ?>">
-                  <i class="far fa-circle nav-icon"></i>
+                <a href="index.php?page=ekstra056" class="nav-link <?php echo ($current_page == 'ekstra056' || $current_page == 'tambah_ekstra056' || $current_page == 'edit_ekstra056') ? 'active' : ''; ?>">
+                  <i class="fas fa-running nav-icon"></i>
                   <p>Ekstrakurikuler</p>
                 </a>
               </li>
@@ -105,7 +102,7 @@
               <?php if ($role == 'admin' || $role == 'guru') : ?>
               <li class="nav-item">
                 <a href="index.php?page=kelas" class="nav-link <?php echo ($current_page == 'kelas' || $current_page == 'tambah_kelas' || $current_page == 'edit_kelas') ? 'active' : ''; ?>">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fas fa-school nav-icon"></i>
                   <p>Kelas</p>
                 </a>
               </li>
@@ -115,13 +112,13 @@
 
           <li class="nav-item <?php echo ($current_page == 'jadwal') ? 'menu-open' : ''; ?>">
             <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <i class="nav-icon fas fa-exchange-alt"></i>
               <p> Transaksi <i class="right fas fa-angle-left"></i> </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="index.php?page=jadwal" class="nav-link <?php echo ($current_page == 'jadwal') ? 'active' : ''; ?>">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fas fa-calendar-alt nav-icon"></i>
                   <p>Jadwal</p>
                 </a>
               </li>
@@ -129,8 +126,8 @@
           </li>
 
           <li class="nav-item">
-            <a href="logout.php" class="nav-link">
-              <i class="nav-icon fas fa-sign-out-alt"></i>
+            <a href="logout.php" class="nav-link text-danger">
+              <i class="nav-icon fas fa-power-off"></i>
               <p>Logout</p>
             </a>
           </li>
@@ -144,7 +141,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Starter Page</h1>
+            <h1 class="m-0">Halaman Utama</h1>
           </div>
         </div>
       </div>
@@ -154,21 +151,21 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-lg-12">
-            <div class="card">
+            <div class="card card-primary card-outline">
               <div class="card-body">
-                <h5 class="card-title">Konten Halaman</h5>
-                <p class="card-text">
+                <h5 class="card-title mb-3">Konten Dinamis</h5>
+                <div class="card-text">
                   <?php
                     $page = isset($_GET['page']) ? $_GET['page'] : "";
                     if ($page == "") {
                       include "page/dashboard.php";
                     } elseif (!file_exists("page/$page.php")) {
-                      echo "File Tidak Ditemukan";
+                      echo "<div class='alert alert-danger'>File page/$page.php Tidak Ditemukan</div>";
                     } else {
                       include "page/$page.php";
                     }
                   ?>
-                </p>
+                </div>
               </div>
             </div>
           </div>
