@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Waktu pembuatan: 05 Bulan Mei 2026 pada 04.39
+-- Waktu pembuatan: 05 Bulan Mei 2026 pada 04.59
 -- Versi server: 8.0.44
 -- Versi PHP: 7.4.19
 
@@ -60,8 +60,8 @@ CREATE TABLE `ekstra_056` (
 --
 
 INSERT INTO `ekstra_056` (`id_ekstra056`, `nama_ekstra056`, `ket056`, `semester056`, `thn_ajaran056`) VALUES
-('E001', 'Badminton', 'Sport', 2, '2026'),
-('E002', 'Futsal', 'Sport', 2, '2025');
+('E001', 'Badminton', 'Sport', 2, '2024/2025'),
+('E002', 'Futsal', 'Sport', 2, '2025/2026');
 
 -- --------------------------------------------------------
 
