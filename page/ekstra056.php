@@ -23,7 +23,7 @@
             <td><?= $d['thn_ajaran056']; ?></td>
             <td>
                 <a href="index.php?page=edit_ekstra056&id=<?= $d['id_ekstra056']; ?>" class="btn btn-warning btn-sm">Edit</a>
-                <a href="page/hapus_ekstra056.php?id=<?= $d['id_ekstra056']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Hapus data?')">Hapus</a>
+                <a href="page/hapus_ekstra056.php?id=<?= $d['id_ekstra056']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Hapus data? Yakin?')">Hapus</a>
             </td>
         </tr>
         <?php } ?>
