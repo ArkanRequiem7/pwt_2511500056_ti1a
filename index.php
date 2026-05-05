@@ -94,7 +94,6 @@
                   <p>Mata Pelajaran</p>
                 </a>
               </li>
-              <!-- Menu Ekstrakurikuler Khusus Admin (Poin 1) -->
               <li class="nav-item">
                 <a href="index.php?page=ekstraNimAnda" class="nav-link <?php echo ($current_page == 'ekstraNimAnda') ? 'active' : ''; ?>">
                   <i class="far fa-circle nav-icon"></i>
