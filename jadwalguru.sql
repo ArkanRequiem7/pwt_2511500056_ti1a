@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Waktu pembuatan: 21 Apr 2026 pada 05.19
+-- Waktu pembuatan: 05 Bulan Mei 2026 pada 04.39
 -- Versi server: 8.0.44
 -- Versi PHP: 7.4.19
 
@@ -40,6 +40,28 @@ CREATE TABLE `admin` (
 
 INSERT INTO `admin` (`id_admin`, `Nama_lengkap`, `Username`, `Password`) VALUES
 (1, 'Muhammad Arkan Ramadhan', 'Arkan', 'Arkan');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `ekstra_056`
+--
+
+CREATE TABLE `ekstra_056` (
+  `id_ekstra056` varchar(5) NOT NULL,
+  `nama_ekstra056` varchar(50) DEFAULT NULL,
+  `ket056` varchar(20) DEFAULT NULL,
+  `semester056` int DEFAULT NULL,
+  `thn_ajaran056` varchar(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data untuk tabel `ekstra_056`
+--
+
+INSERT INTO `ekstra_056` (`id_ekstra056`, `nama_ekstra056`, `ket056`, `semester056`, `thn_ajaran056`) VALUES
+('E001', 'Badminton', 'Sport', 2, '2026'),
+('E002', 'Futsal', 'Sport', 2, '2025');
 
 -- --------------------------------------------------------
 
@@ -161,6 +183,12 @@ INSERT INTO `users` (`id_user`, `Username`, `Password`, `role`, `session_id`) VA
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`id_admin`);
+
+--
+-- Indeks untuk tabel `ekstra_056`
+--
+ALTER TABLE `ekstra_056`
+  ADD PRIMARY KEY (`id_ekstra056`);
 
 --
 -- Indeks untuk tabel `guru`
