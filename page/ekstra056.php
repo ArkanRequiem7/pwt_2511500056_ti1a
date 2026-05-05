@@ -3,7 +3,7 @@
     <thead>
         <tr>
             <th>ID</th>
-            <th>Nama Ekstra</th>
+            <th>Nama Ekstrakurikuler</th>
             <th>Keterangan</th>
             <th>Semester</th>
             <th>Tahun Ajaran</th>
