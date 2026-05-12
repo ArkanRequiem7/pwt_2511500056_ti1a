@@ -57,7 +57,7 @@ if (isset($_POST['simpan'])) {
     $queryGuru = mysqli_query($koneksi, "INSERT INTO guru VALUES ('$kd', '$nm', '$jk', '$pt', '$hp', '$al')");
     $queryUser = mysqli_query($koneksi, "INSERT INTO users (Username, Password, role) VALUES ('$kd', '1234', 'guru')");
 
-    if ($queryguru && $queryUser) {
+    if ($queryGuru && $queryUser) {
         echo "<script>alert('Data Guru & User berhasil disimpan'); window.location.href='index.php?page=guru';</script>";
     }
 }

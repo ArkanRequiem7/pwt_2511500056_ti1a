@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Waktu pembuatan: 05 Bulan Mei 2026 pada 04.59
+-- Waktu pembuatan: 12 Bulan Mei 2026 pada 04.38
 -- Versi server: 8.0.44
 -- Versi PHP: 7.4.19
 
@@ -60,8 +60,8 @@ CREATE TABLE `ekstra_056` (
 --
 
 INSERT INTO `ekstra_056` (`id_ekstra056`, `nama_ekstra056`, `ket056`, `semester056`, `thn_ajaran056`) VALUES
-('E001', 'Badminton', 'Sport', 2, '2024/2025'),
-('E002', 'Futsal', 'Sport', 2, '2025/2026');
+('E001', 'Badminton9', 'Sport1', 1, '2025/2026'),
+('j1', 'jq', 'q', 1, '2025/2026');
 
 -- --------------------------------------------------------
 
@@ -83,8 +83,34 @@ CREATE TABLE `guru` (
 --
 
 INSERT INTO `guru` (`Kd_guru`, `Nm_guru`, `Jenkel`, `Pend_terakhir`, `Hp`, `Alamat`) VALUES
+('Ren12', 'Renn Mla', 'Perempuan', 'Strata 1', '999999999999', 'Mentok'),
 ('Ren99', 'Renn ZO', 'Perempuan', 'Strata 2', '3131131333131', 'Mentok'),
 ('Renn1', 'Renn ZM', 'Laki-laki', 'Strata 2', '999999999999', 'Mentok');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `jadwal`
+--
+
+CREATE TABLE `jadwal` (
+  `id_jadwal` int NOT NULL,
+  `id_kelas` int NOT NULL,
+  `kd_mapel` varchar(5) NOT NULL,
+  `kd_guru` varchar(5) NOT NULL,
+  `hari` varchar(20) NOT NULL,
+  `jam` varchar(20) NOT NULL,
+  `thn_ajaran` varchar(10) NOT NULL,
+  `semester` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data untuk tabel `jadwal`
+--
+
+INSERT INTO `jadwal` (`id_jadwal`, `id_kelas`, `kd_mapel`, `kd_guru`, `hari`, `jam`, `thn_ajaran`, `semester`) VALUES
+(1, 1, 'M-001', 'Renn1', 'Senin', '07:00 - 09:00', '2025/2026', 1),
+(2, 1, 'M-002', 'Ren99', 'Selasa', '09:00 - 11:00', '2025/2026', 1);
 
 -- --------------------------------------------------------
 
@@ -93,7 +119,7 @@ INSERT INTO `guru` (`Kd_guru`, `Nm_guru`, `Jenkel`, `Pend_terakhir`, `Hp`, `Alam
 --
 
 CREATE TABLE `kelas` (
-  `Id_kelas` int NOT NULL,
+  `Id_kelas` varchar(10) NOT NULL,
   `Nm_kelas` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -102,9 +128,26 @@ CREATE TABLE `kelas` (
 --
 
 INSERT INTO `kelas` (`Id_kelas`, `Nm_kelas`) VALUES
-(1, 'IPA'),
-(2, 'Agama'),
-(3, 'IPS');
+('1', 'IPA'),
+('2', 'Agama'),
+('3', 'IPS');
+
+--
+-- Trigger `kelas`
+--
+DELIMITER $$
+CREATE TRIGGER `tg_kode_kelas` BEFORE INSERT ON `kelas` FOR EACH ROW BEGIN
+    DECLARE s_id INT;
+    SELECT CAST(SUBSTRING(MAX(Id_kelas), 3) AS UNSIGNED) INTO s_id FROM `kelas`;
+    
+    IF s_id IS NULL THEN
+        SET NEW.Id_kelas = 'K-001';
+    ELSE
+        SET NEW.Id_kelas = CONCAT('K-', LPAD(s_id + 1, 3, '0'));
+    END IF;
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -125,7 +168,8 @@ CREATE TABLE `mapel` (
 INSERT INTO `mapel` (`kd_mapel`, `nm_mapel`, `kkm`) VALUES
 ('M-001', 'Buku Hitam Prabowo', 76),
 ('M-002', 'Agama', 75),
-('M-003', 'Buku Hitam Prabowo Bab 2', 90);
+('M-003', 'Buku Hitam Prabowo Bab 2', 90),
+('M-004', 'Sejarah Hiroshima', 90);
 
 -- --------------------------------------------------------
 
@@ -146,7 +190,8 @@ CREATE TABLE `siswa` (
 --
 
 INSERT INTO `siswa` (`Nis`, `Nm_siswa`, `Jenkel`, `Hp`, `Id_Kelas`) VALUES
-('2511500056', 'Arkan', 'Laki-laki', '321212122', 1);
+('2511500050', 'Renn', 'Perempuan', '999999999999', 2),
+('2511500056', 'Arkan', 'Laki-laki', '8888888888', 1);
 
 -- --------------------------------------------------------
 
@@ -172,7 +217,15 @@ INSERT INTO `users` (`id_user`, `Username`, `Password`, `role`, `session_id`) VA
 (3, 'Malik', 'Malik1', 'siswa', NULL),
 (4, 'Ren99', 'Renn12', 'guru', NULL),
 (5, '2511500056', 'arkan', 'siswa', NULL),
-(6, 'Renn1', '1234', 'guru', NULL);
+(6, 'Renn1', '1234', 'guru', NULL),
+(7, '2511500050', '1234', 'siswa', NULL),
+(8, '2511500056', '1234', 'siswa', NULL),
+(9, '2511500056', '1234', 'siswa', NULL),
+(10, '2511500050', '1234', 'siswa', NULL),
+(11, '2511500056', '1234', 'siswa', NULL),
+(12, '2511500056', '1234', 'siswa', NULL),
+(13, 'Renn1', '1234', 'guru', NULL),
+(14, 'Ren12', '1234', 'guru', NULL);
 
 --
 -- Indexes for dumped tables
@@ -195,6 +248,12 @@ ALTER TABLE `ekstra_056`
 --
 ALTER TABLE `guru`
   ADD PRIMARY KEY (`Kd_guru`);
+
+--
+-- Indeks untuk tabel `jadwal`
+--
+ALTER TABLE `jadwal`
+  ADD PRIMARY KEY (`id_jadwal`);
 
 --
 -- Indeks untuk tabel `kelas`
@@ -231,16 +290,16 @@ ALTER TABLE `admin`
   MODIFY `id_admin` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `kelas`
+-- AUTO_INCREMENT untuk tabel `jadwal`
 --
-ALTER TABLE `kelas`
-  MODIFY `Id_kelas` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+ALTER TABLE `jadwal`
+  MODIFY `id_jadwal` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_user` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
