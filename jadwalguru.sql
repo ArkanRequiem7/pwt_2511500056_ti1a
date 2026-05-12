@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Waktu pembuatan: 12 Bulan Mei 2026 pada 04.38
+-- Waktu pembuatan: 12 Bulan Mei 2026 pada 04.57
 -- Versi server: 8.0.44
 -- Versi PHP: 7.4.19
 
@@ -95,13 +95,13 @@ INSERT INTO `guru` (`Kd_guru`, `Nm_guru`, `Jenkel`, `Pend_terakhir`, `Hp`, `Alam
 
 CREATE TABLE `jadwal` (
   `id_jadwal` int NOT NULL,
-  `id_kelas` int NOT NULL,
-  `kd_mapel` varchar(5) NOT NULL,
-  `kd_guru` varchar(5) NOT NULL,
+  `id_kelas` varchar(10) NOT NULL,
+  `kd_mapel` varchar(10) NOT NULL,
+  `kd_guru` varchar(10) NOT NULL,
   `hari` varchar(20) NOT NULL,
   `jam` varchar(20) NOT NULL,
-  `thn_ajaran` varchar(10) NOT NULL,
-  `semester` int NOT NULL
+  `thn_ajaran` varchar(20) NOT NULL,
+  `semester` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
@@ -109,8 +109,7 @@ CREATE TABLE `jadwal` (
 --
 
 INSERT INTO `jadwal` (`id_jadwal`, `id_kelas`, `kd_mapel`, `kd_guru`, `hari`, `jam`, `thn_ajaran`, `semester`) VALUES
-(1, 1, 'M-001', 'Renn1', 'Senin', '07:00 - 09:00', '2025/2026', 1),
-(2, 1, 'M-002', 'Ren99', 'Selasa', '09:00 - 11:00', '2025/2026', 1);
+(3, '1', 'M-001', 'Ren12', 'Senin', '07:00-9:30', '2024/2025', 'Ganjil');
 
 -- --------------------------------------------------------
 
@@ -293,7 +292,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT untuk tabel `jadwal`
 --
 ALTER TABLE `jadwal`
-  MODIFY `id_jadwal` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_jadwal` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `users`

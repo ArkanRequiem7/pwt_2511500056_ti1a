@@ -2,53 +2,93 @@
 $id_k = $_GET['id_kelas'];
 $thn  = $_GET['thn'];
 $sem  = $_GET['sem'];
-$inf  = mysqli_fetch_array(mysqli_query($koneksi, "SELECT Nm_kelas FROM kelas WHERE Id_kelas='$id_k'"));
+$query_info = mysqli_query($koneksi, "SELECT Nm_kelas FROM kelas WHERE Id_kelas='$id_k'");
+$inf = mysqli_fetch_array($query_info);
 ?>
 
 <div class="content mt-3">
     <div class="container-fluid">
-        <div class="card">
-            <div class="card-header bg-info">
-                <h3 class="card-title">Detail Jadwal: <?= $inf['Nm_kelas']; ?> (<?= $thn; ?>)</h3>
+        <div class="card card-outline card-info">
+            <div class="card-header">
+                <h3 class="card-title">
+                    <i class="fas fa-calendar-alt mr-1"></i>
+                    Detail Jadwal: <strong><?= $inf['Nm_kelas']; ?></strong> 
+                    <span class="badge badge-secondary ml-2">TA: <?= $thn; ?></span>
+                    <span class="badge badge-primary"><?= $sem; ?></span>
+                </h3>
+                <div class="card-tools">
+                    <a href="index.php?page=jadwal" class="btn btn-tool">
+                        <i class="fas fa-arrow-left"></i> Kembali
+                    </a>
+                </div>
             </div>
-            <div class="card-body">
-                <table class="table table-bordered">
-                    <thead class="bg-light text-center">
+            <div class="card-body p-0">
+                <table class="table table-hover table-striped mb-0">
+                    <thead class="bg-light">
                         <tr>
-                            <th>Kode</th>
+                            <th class="text-center" style="width: 50px;">No</th>
                             <th>Mata Pelajaran</th>
-                            <th>Guru</th>
-                            <th>Waktu</th>
-                            <th>Aksi</th>
+                            <th>Guru Pengampu</th>
+                            <th class="text-center">Hari</th>
+                            <th class="text-center">Waktu (Mulai - Selesai)</th>
+                            <th class="text-center" style="width: 150px;">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
-                        $res = mysqli_query($koneksi, "SELECT j.*, m.nm_mapel, g.Nm_guru 
-                                                       FROM jadwal j 
-                                                       JOIN mapel m ON j.kd_mapel=m.kd_mapel 
-                                                       JOIN guru g ON j.kd_guru=g.Kd_guru 
-                                                       WHERE j.id_kelas='$id_k' AND j.thn_ajaran='$thn' AND j.semester='$sem'");
-                        while($row = mysqli_fetch_array($res)){
+                        $no = 1;
+                        $sql = "SELECT j.*, m.nm_mapel, g.Nm_guru 
+                                FROM jadwal j 
+                                JOIN mapel m ON j.kd_mapel = m.kd_mapel 
+                                JOIN guru g ON j.kd_guru = g.Kd_guru 
+                                WHERE j.id_kelas = '$id_k' 
+                                AND j.thn_ajaran = '$thn' 
+                                AND j.semester = '$sem'
+                                ORDER BY FIELD(hari, 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'), jam_mulai ASC";
+                        
+                        $res = mysqli_query($koneksi, $sql);
+                        
+                        if(mysqli_num_rows($res) > 0) {
+                            while($row = mysqli_fetch_array($res)){ 
                         ?>
                         <tr>
-                            <td class="text-center"><?= $row['kd_mapel']; ?></td>
-                            <td><?= $row['nm_mapel']; ?></td>
+                            <td class="text-center"><?= $no++; ?></td>
+                            <td>
+                                <strong><?= $row['nm_mapel']; ?></strong><br>
+                                <small class="text-muted">Kode: <?= $row['kd_mapel']; ?></small>
+                            </td>
                             <td><?= $row['Nm_guru']; ?></td>
-                            <td><?= $row['hari']; ?>, <?= $row['jam']; ?></td>
                             <td class="text-center">
-                                <a href="index.php?page=tambah_jadwal&id=<?= $row['id_jadwal']; ?>" class="text-warning mr-2" title="Edit">
+                                <span class="badge badge-info"><?= $row['hari']; ?></span>
+                            </td>
+                            <td class="text-center">
+                                <i class="far fa-clock"></i> 
+                                <?= date('H:i', strtotime($row['jam_mulai'])); ?> - <?= date('H:i', strtotime($row['jam_selesai'])); ?>
+                            </td>
+                            <td class="text-center">
+                                <a href="index.php?page=tambah_jadwal&id=<?= $row['id_jadwal']; ?>" 
+                                   class="btn btn-sm btn-warning" title="Edit Data">
                                     <i class="fas fa-edit"></i>
                                 </a>
-                                <a href="index.php?page=hapus_jadwal&id=<?= $row['id_jadwal']; ?>&aksi=hapus_item" class="text-danger" onclick="return confirm('Hapus item ini?')" title="Hapus">
+                                <a href="index.php?page=hapus_jadwal&id=<?= $row['id_jadwal']; ?>&aksi=hapus_item" 
+                                   class="btn btn-sm btn-danger" 
+                                   onclick="return confirm('Apakah Anda yakin ingin menghapus mata pelajaran ini dari jadwal?')" 
+                                   title="Hapus Data">
                                     <i class="fas fa-trash"></i>
                                 </a>
                             </td>
                         </tr>
-                        <?php } ?>
+                        <?php 
+                            } 
+                        } else {
+                            echo "<tr><td colspan='6' class='text-center py-4 text-muted'>Belum ada data jadwal untuk kelas ini.</td></tr>";
+                        }
+                        ?>
                     </tbody>
                 </table>
-                <a href="index.php?page=jadwal" class="btn btn-secondary mt-3">Kembali</a>
+            </div>
+            <div class="card-footer bg-white text-right">
+                <p class="text-muted small mb-0">Total: <?= ($no-1); ?> Mata Pelajaran ditemukan</p>
             </div>
         </div>
     </div>
