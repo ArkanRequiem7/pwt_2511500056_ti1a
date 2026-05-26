@@ -1,4 +1,5 @@
 <?php
+$role = $_SESSION['role'];
 $id_k = $_GET['id_kelas'];
 $thn  = $_GET['thn'];
 $sem  = $_GET['sem'];
@@ -31,7 +32,9 @@ $inf = mysqli_fetch_array($query_info);
                             <th>Guru Pengampu</th>
                             <th class="text-center">Hari</th>
                             <th class="text-center">Waktu (Mulai - Selesai)</th>
-                            <th class="text-center" style="width: 150px;">Aksi</th>
+                            <?php if ($role == 'admin') : ?>
+                                <th class="text-center" style="width: 150px;">Aksi</th>
+                            <?php endif; ?>
                         </tr>
                     </thead>
                     <tbody>
@@ -65,23 +68,26 @@ $inf = mysqli_fetch_array($query_info);
                                 <i class="far fa-clock"></i> 
                                 <?= date('H:i', strtotime($row['jam_mulai'])); ?> - <?= date('H:i', strtotime($row['jam_selesai'])); ?>
                             </td>
-                            <td class="text-center">
-                                <a href="index.php?page=tambah_jadwal&id=<?= $row['id_jadwal']; ?>" 
-                                   class="btn btn-sm btn-warning" title="Edit Data">
-                                    <i class="fas fa-edit"></i>
-                                </a>
-                                <a href="index.php?page=hapus_jadwal&id=<?= $row['id_jadwal']; ?>&aksi=hapus_item" 
-                                   class="btn btn-sm btn-danger" 
-                                   onclick="return confirm('Apakah Anda yakin ingin menghapus mata pelajaran ini dari jadwal?')" 
-                                   title="Hapus Data">
-                                    <i class="fas fa-trash"></i>
-                                </a>
-                            </td>
+                            <?php if ($role == 'admin') : ?>
+                                <td class="text-center">
+                                    <a href="index.php?page=tambah_jadwal&id=<?= $row['id_jadwal']; ?>" 
+                                       class="btn btn-sm btn-warning" title="Edit Data">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <a href="index.php?page=hapus_jadwal&id=<?= $row['id_jadwal']; ?>&aksi=hapus_item" 
+                                       class="btn btn-sm btn-danger" 
+                                       onclick="return confirm('Apakah Anda yakin ingin menghapus mata pelajaran ini dari jadwal?')" 
+                                       title="Hapus Data">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </td>
+                            <?php endif; ?>
                         </tr>
                         <?php 
                             } 
                         } else {
-                            echo "<tr><td colspan='6' class='text-center py-4 text-muted'>Belum ada data jadwal untuk kelas ini.</td></tr>";
+                            $colspan = ($role == 'admin') ? 6 : 5;
+                            echo "<tr><td colspan='$colspan' class='text-center py-4 text-muted'>Belum ada data jadwal untuk kelas ini.</td></tr>";
                         }
                         ?>
                     </tbody>

@@ -110,14 +110,14 @@
             </ul>
           </li>
 
-          <li class="nav-item <?php echo ($current_page == 'jadwal') ? 'menu-open' : ''; ?>">
+          <li class="nav-item <?php echo ($current_page == 'jadwal' || $current_page == 'detail_jadwal') ? 'menu-open' : ''; ?>">
             <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-exchange-alt"></i>
               <p> Transaksi <i class="right fas fa-angle-left"></i> </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="index.php?page=jadwal" class="nav-link <?php echo ($current_page == 'jadwal') ? 'active' : ''; ?>">
+                <a href="index.php?page=jadwal" class="nav-link <?php echo ($current_page == 'jadwal' || $current_page == 'detail_jadwal') ? 'active' : ''; ?>">
                   <i class="fas fa-calendar-alt nav-icon"></i>
                   <p>Jadwal</p>
                 </a>

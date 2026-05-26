@@ -1,4 +1,12 @@
 <?php
+if ($_SESSION['role'] != 'admin') {
+    echo "<script>
+            alert('Akses Ditolak! Anda tidak memiliki izin untuk menghapus jadwal.'); 
+            window.location='index.php?page=jadwal';
+          </script>";
+    exit;
+}
+
 if(isset($_GET['aksi'])){
     if($_GET['aksi'] == "hapus_item"){
         $id = $_GET['id'];

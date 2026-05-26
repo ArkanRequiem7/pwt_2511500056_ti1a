@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Waktu pembuatan: 12 Bulan Mei 2026 pada 04.57
+-- Waktu pembuatan: 26 Bulan Mei 2026 pada 04.07
 -- Versi server: 8.0.44
 -- Versi PHP: 7.4.19
 
@@ -61,6 +61,7 @@ CREATE TABLE `ekstra_056` (
 
 INSERT INTO `ekstra_056` (`id_ekstra056`, `nama_ekstra056`, `ket056`, `semester056`, `thn_ajaran056`) VALUES
 ('E001', 'Badminton9', 'Sport1', 1, '2025/2026'),
+('E002', 'Futsal', 'Sport', 1, '2024/2025'),
 ('j1', 'jq', 'q', 1, '2025/2026');
 
 -- --------------------------------------------------------
@@ -97,9 +98,10 @@ CREATE TABLE `jadwal` (
   `id_jadwal` int NOT NULL,
   `id_kelas` varchar(10) NOT NULL,
   `kd_mapel` varchar(10) NOT NULL,
-  `kd_guru` varchar(10) NOT NULL,
-  `hari` varchar(20) NOT NULL,
-  `jam` varchar(20) NOT NULL,
+  `kd_guru` varchar(5) NOT NULL,
+  `hari` varchar(15) NOT NULL,
+  `jam_mulai` time NOT NULL,
+  `jam_selesai` time NOT NULL,
   `thn_ajaran` varchar(20) NOT NULL,
   `semester` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -108,8 +110,11 @@ CREATE TABLE `jadwal` (
 -- Dumping data untuk tabel `jadwal`
 --
 
-INSERT INTO `jadwal` (`id_jadwal`, `id_kelas`, `kd_mapel`, `kd_guru`, `hari`, `jam`, `thn_ajaran`, `semester`) VALUES
-(3, '1', 'M-001', 'Ren12', 'Senin', '07:00-9:30', '2024/2025', 'Ganjil');
+INSERT INTO `jadwal` (`id_jadwal`, `id_kelas`, `kd_mapel`, `kd_guru`, `hari`, `jam_mulai`, `jam_selesai`, `thn_ajaran`, `semester`) VALUES
+(1, '3', 'M-003', 'Ren99', 'Senin', '07:00:00', '12:00:00', '2024/2025', 'Genap'),
+(5, '3', 'M-002', 'Ren12', 'Senin', '14:55:00', '16:55:00', '2024/2025', 'Genap'),
+(6, '1', 'M-001', 'Ren12', 'Senin', '15:03:00', '16:03:00', '2024/2025', 'Ganjil'),
+(7, '2', 'M-002', 'Ren12', 'Senin', '11:08:00', '16:03:00', '2025/2026', 'Genap');
 
 -- --------------------------------------------------------
 
@@ -168,7 +173,8 @@ INSERT INTO `mapel` (`kd_mapel`, `nm_mapel`, `kkm`) VALUES
 ('M-001', 'Buku Hitam Prabowo', 76),
 ('M-002', 'Agama', 75),
 ('M-003', 'Buku Hitam Prabowo Bab 2', 90),
-('M-004', 'Sejarah Hiroshima', 90);
+('M-004', 'Sejarah Hiroshima', 90),
+('M-005', 'Sejarah Nagasaki', 76);
 
 -- --------------------------------------------------------
 
@@ -292,7 +298,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT untuk tabel `jadwal`
 --
 ALTER TABLE `jadwal`
-  MODIFY `id_jadwal` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_jadwal` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT untuk tabel `users`

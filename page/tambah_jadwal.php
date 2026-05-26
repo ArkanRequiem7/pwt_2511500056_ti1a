@@ -1,4 +1,12 @@
 <?php
+if ($_SESSION['role'] != 'admin') {
+    echo "<script>
+            alert('Akses Ditolak! Anda tidak memiliki izin untuk menambah atau mengubah jadwal.'); 
+            window.location='index.php?page=jadwal';
+          </script>";
+    exit;
+}
+
 $id_edit = isset($_GET['id']) ? $_GET['id'] : '';
 $data_edit = [];
 if ($id_edit != '') {
