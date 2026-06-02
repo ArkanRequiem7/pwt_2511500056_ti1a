@@ -1,14 +1,12 @@
 <?php
 if (isset($_POST['simpan'])) {
-    $id = $_POST['Id_kelas'];
     $nama = $_POST['Nm_kelas'];
-    
-    $input = mysqli_query($koneksi, "INSERT INTO kelas (Id_kelas, Nm_kelas) VALUES ('$id', '$nama')");
+    $input = mysqli_query($koneksi, "INSERT INTO kelas (Nm_kelas) VALUES ('$nama')");
     
     if ($input) {
         echo "<script>alert('Data Berhasil Disimpan'); window.location.href='index.php?page=kelas';</script>";
     } else {
-        echo "<script>alert('Gagal Menyimpan Data');</script>";
+        echo "<script>alert('Gagal Menyimpan Data. Error: " . mysqli_error($koneksi) . "');</script>";
     }
 }
 ?>
@@ -19,10 +17,6 @@ if (isset($_POST['simpan'])) {
     </div>
     <form method="POST">
         <div class="card-body">
-            <div class="form-group">
-                <label>ID Kelas</label>
-                <input type="text" name="Id_kelas" class="form-control" placeholder="Contoh: 4" required>
-            </div>
             <div class="form-group">
                 <label>Nama Kelas</label>
                 <input type="text" name="Nm_kelas" class="form-control" placeholder="Masukkan Nama Kelas" required>
