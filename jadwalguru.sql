@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Waktu pembuatan: 26 Bulan Mei 2026 pada 04.07
+-- Waktu pembuatan: 02 Jun 2026 pada 05.55
 -- Versi server: 8.0.44
 -- Versi PHP: 7.4.19
 
@@ -114,7 +114,10 @@ INSERT INTO `jadwal` (`id_jadwal`, `id_kelas`, `kd_mapel`, `kd_guru`, `hari`, `j
 (1, '3', 'M-003', 'Ren99', 'Senin', '07:00:00', '12:00:00', '2024/2025', 'Genap'),
 (5, '3', 'M-002', 'Ren12', 'Senin', '14:55:00', '16:55:00', '2024/2025', 'Genap'),
 (6, '1', 'M-001', 'Ren12', 'Senin', '15:03:00', '16:03:00', '2024/2025', 'Ganjil'),
-(7, '2', 'M-002', 'Ren12', 'Senin', '11:08:00', '16:03:00', '2025/2026', 'Genap');
+(7, '2', 'M-002', 'Ren12', 'Senin', '11:08:00', '16:03:00', '2025/2026', 'Genap'),
+(8, 'K-001', 'M-001', 'Ren12', 'Senin', '12:13:00', '12:14:00', '2024/2025', 'Ganjil'),
+(9, 'K-004', 'M-005', 'Renn1', 'Senin', '18:49:00', '16:26:00', '2026/2027', 'Genap'),
+(10, 'K-001', 'M-001', 'Ren12', 'Kamis', '10:19:00', '08:09:00', '2026/2027', 'Genap');
 
 -- --------------------------------------------------------
 
@@ -132,9 +135,10 @@ CREATE TABLE `kelas` (
 --
 
 INSERT INTO `kelas` (`Id_kelas`, `Nm_kelas`) VALUES
-('1', 'IPA'),
-('2', 'Agama'),
-('3', 'IPS');
+('K-001', 'IPA'),
+('K-002', 'Agama'),
+('K-003', 'IPS'),
+('K-004', 'Matematika');
 
 --
 -- Trigger `kelas`
@@ -298,7 +302,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT untuk tabel `jadwal`
 --
 ALTER TABLE `jadwal`
-  MODIFY `id_jadwal` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_jadwal` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT untuk tabel `users`
